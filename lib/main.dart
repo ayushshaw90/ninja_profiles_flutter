@@ -4,17 +4,23 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  int level = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Ninja ID",
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey[800],
+          backgroundColor: Colors.grey[850],
           title: const Center(
             child: Text(
               "Ninja Profile",
@@ -58,7 +64,7 @@ class MyApp extends StatelessWidget {
                 ),
                 const SizedBox(height: 12.0),
                 Text(
-                  "7",
+                  "$level",
                   style: TextStyle(
                     color: Colors.amber[200],
                     fontSize: 24,
@@ -88,6 +94,26 @@ class MyApp extends StatelessWidget {
                     )
                   ],
                 ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FloatingActionButton(
+                      onPressed: () {
+                        setState(() {
+                          level = level + 1;
+                        });
+                      },
+                      backgroundColor: Colors.grey[800],
+                      child: const Icon(
+                        Icons.add,
+                        size: 24.0,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
